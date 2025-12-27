@@ -1,0 +1,83 @@
+---
+const accessKey = "b4e57d62-3132-4ae0-9d88-20bcf071bd47";
+---
+
+<form id="contact-form" class="mx-auto flex max-w-xl flex-col gap-4">
+  <input type="hidden" name="access_key" value={accessKey} />
+
+  <div class="flex flex-col gap-1.5">
+    <input
+      type="text"
+      id="name"
+      name="name"
+      required
+      placeholder="Your name"
+      class="rounded-md border border-border bg-background px-4 py-2 text-foreground placeholder:text-foreground/50 focus:outline-2 focus:outline-dashed focus:outline-accent focus:outline-offset-1"
+    />
+  </div>
+
+  <div class="flex flex-col gap-1.5">
+    <input
+      type="email"
+      id="email"
+      name="email"
+      required
+      placeholder="your@email.com"
+      class="rounded-md border border-border bg-background px-4 py-2 text-foreground placeholder:text-foreground/50 focus:outline-2 focus:outline-dashed focus:outline-accent focus:outline-offset-1"
+    />
+  </div>
+
+  <div class="flex flex-col gap-1.5">
+    <input
+      type="text"
+      id="message"
+      name="message"
+      required
+      placeholder="Tell me a secret..."
+      class="resize-y rounded-md border border-border bg-background px-4 py-2 text-foreground placeholder:text-foreground/50 focus:outline-2 focus:outline-dashed focus:outline-accent focus:outline-offset-1"
+    />
+  </div>
+
+  <div class="flex items-center gap-4">
+    <button
+      type="submit"
+      class="rounded-md border border-border bg-accent px-6 py-2 font-medium text-background transition-colors hover:opacity-90 focus:outline-2 focus:outline-dashed focus:outline-accent focus:outline-offset-2"
+    >
+      Submit
+    </button>
+    <span
+      id="form-result"
+      class="text-sm text-foreground/80"
+      aria-live="polite"></span>
+  </div>
+</form>
+
+<script>
+  const form = document.getElementById("contact-form") as HTMLFormElement;
+  const resultSpan = document.getElementById("form-result") as HTMLSpanElement;
+
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    resultSpan.textContent = "Sending....";
+
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch("https://api.web3forms.com/submit", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        resultSpan.textContent = "Your secrets are safe with me!";
+        form.reset();
+      } else {
+        resultSpan.textContent = "Error";
+      }
+    } catch {
+      resultSpan.textContent = "Error";
+    }
+  });
+</script>

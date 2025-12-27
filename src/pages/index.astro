@@ -12,6 +12,8 @@ import IconRss from "@/assets/icons/IconRss.svg";
 import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
 import { SITE } from "@/config";
 import { SOCIALS } from "@/constants";
+import ContactForm from "@/components/ContactForm.astro";
+import LetterGlitch from "@/components/LetterGlitch.astro";
 
 const posts = await getCollection("blog");
 
@@ -24,9 +26,16 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
   <Header />
   <main id="main-content" data-layout="index">
     <section id="hero" class="pt-8 pb-6">
-      <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">
-        Manas S
-      </h1>
+      <div class="relative flex items-center">
+        <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">Manas S</h1>
+        <div class="relative ms-4 h-24 flex-1 overflow-hidden sm:h-32">
+          <LetterGlitch glitchSpeed={1} smooth={true} class="h-full w-full" />
+          <div
+            class="pointer-events-none absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent"
+          >
+          </div>
+        </div>
+      </div>
       <a
         target="_blank"
         href="/rss.xml"
@@ -43,8 +52,8 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
       </a>
 
       <p>
-        This site is under construction. Welcome to my personal blog where I share my
-        thoughts on technology, programming, and web development.
+        This site is under construction. Welcome to my personal blog where I
+        share my thoughts on technology, programming, and web development.
       </p>
       <p class="mt-2">
         Read the blog posts or check
@@ -104,6 +113,10 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
         <IconArrowRight class="inline-block rtl:-rotate-180" />
       </LinkButton>
     </div>
+
+    <Hr />
+
+    <ContactForm />
   </main>
   <Footer />
 </Layout>
