@@ -3,7 +3,7 @@ author: Manas S
 pubDatetime: 2025-03-01T15:22:00Z
 modDatetime: 2024-03-01T16:52:45.934Z
 title: RetroPie to re-live the good old days
-slug: set-up-a-homeserver
+slug: retropie
 featured: true
 draft: false
 tags:
