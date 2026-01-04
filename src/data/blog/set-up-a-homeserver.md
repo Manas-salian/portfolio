@@ -16,7 +16,7 @@ ogImage: ../../assets/images/blogs/og_image.webp
 
 I’ve been using Linux as my daily driver for over five years now, and I’ve always been curious about how Linux operates as a server and what exactly a server entails. However, I never had the resources or the know-how to build my own server — until I got a shiny new laptop!
 
-![The server in all its glory](../../assets/images/blogs/og_image.webp)
+![The server in all its glory](../../assets/images/blogs/og_image.webp)*The server in all its glory*
 
 ## Table of contents
 
@@ -41,7 +41,7 @@ OpenSSH is your best friend when it comes to logging into your server remotely. 
 ssh username@ip_address_of_server
 ```
 
-![After the installation and login via SSH](../../assets/images/blogs/ssh.webp)
+![After the installation and login via SSH](../../assets/images/blogs/ssh.webp)*After the installation and login via SSH*
 
 ## SMB File Sharing Using Samba
 
@@ -55,11 +55,11 @@ sudo apt install samba
    
 2. Once that’s done, we need a directory `/media/share` to store the files we'll be sharing on the network. This setup can be quite involved, so I recommend following this guide from KalOS [here](https://chriskalos.notion.site/The-0-Home-Server-Written-Guide-5d5ff30f9bdd4dfbb9ce68f0d914f1f6#ad77305c83424605b859168b243ff81d).
 
-   ![Samba service running](../../assets/images/blogs/samba.webp)
+   ![Samba service running](../../assets/images/blogs/samba.webp)*Samba service running*
    
 3. I had a secondary 500GB hard drive on my laptop which I formatted to ext4 using this guide on [Partitioning and Formatting Disks](https://www.cherryservers.com/blog/how-to-partition-and-format-disk-drives-on-linux).
 
-   ![Attaching the network storage on my windows pc](../../assets/images/blogs/network_storage.webp)
+   ![Attaching the network storage on my windows pc](../../assets/images/blogs/network_storage.webp)*Attaching the network storage on my windows pc*
 
 ## Disabling the Suspend on Lid Close Feature
 
@@ -73,7 +73,7 @@ sudo nano /etc/systemd/logind.conf
 
 2. Change the values of `HandleSuspendKey`, `HandleLidSwitch`, `HandleLidSwitchExternalPower`, and `HandleLidSwitchDocked` from `suspend` to `ignore`.
 
-   ![logind.conf](../../assets/images/blogs/logind_conf.webp)
+   ![logind.conf](../../assets/images/blogs/logind_conf.webp)*logind.conf*
    
 3. Restart the logind service:
    
@@ -85,7 +85,7 @@ sudo nano /etc/systemd/logind.conf
 
 Jellyfin is a free and open-source media server designed to organize, manage, and stream digital media files across various devices. It allows users to host their own (legally acquired 😉) media libraries and access them remotely without any subscription fees or third-party dependencies. There are plenty of guides online on how to set up Jellyfin on your home server.
 
-![Jellyfin UI](../../assets/images/blogs/jellyfin.webp)
+![Jellyfin UI](../../assets/images/blogs/jellyfin.webp)*Jellyfin UI*
 
 And voilà! With all that set up, I now have my nifty little home server! 🎉 I’m also planning to set up WireGuard VPN on it and set up port forwarding so that I can access my server from anywhere in the world, but that’s a story for another day!
 

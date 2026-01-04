@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "data/blog/retropie.md",
+                "file": "data/blog/wifi-on-linux.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "retropie"
+              "title": "wifi-on-linux"
             }
           }
         ]
@@ -185,9 +185,12 @@
   },
   "active": "5dfca099e84df746",
   "lastOpenFiles": [
+    "assets/images/blogs/blog3_2.webp",
+    "assets/images/blogs/blog3_1.webp",
     "data/blog/set-up-a-homeserver.md",
-    "data/blog/retropie.md",
     "data/blog/examples/example-draft-post.md",
+    "data/blog/retropie.md",
+    "data/blog/wifi-on-linux.md",
     "assets/images/blogs/retropie.webp",
     "data/blog/how-to-integrate-giscus-comments.md",
     "assets/images/blogs/jellyfin.webp",

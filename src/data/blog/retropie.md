@@ -9,7 +9,9 @@ draft: false
 tags:
   - homeserver
   - linux
-  - self-hosting
+  - retro-gaming
+  - retro
+  - emulation
 description: Turn your old laptop into a retro game emulation console and travel back to your childhood!
 ogImage: ../../assets/images/blogs/retropie.webp
 ---

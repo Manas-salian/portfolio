@@ -47,6 +47,17 @@
       @apply mx-auto border border-border;
     }
 
+    /* Custom Css for figure captions */
+    p:has(> img, > picture):has(> em:last-child) img,
+    p:has(> img, > picture):has(+ p > em:only-child) img {
+      @apply mb-0;
+    }
+
+    p:has(> img, > picture) > em:last-child,
+    p:has(> img, > picture) + p > em:only-child {
+      @apply block text-center text-sm opacity-75 not-italic mt-2;
+    }
+
     figcaption {
       @apply opacity-75;
     }
