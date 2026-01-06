@@ -17,7 +17,7 @@ ogImage: ../../assets/images/blogs/retropie.webp
 ---
 
 
-![The server in all its glory](../../assets/images/blogs/retropie.webp)
+![The server in all its glory](../../assets/images/blogs/retropie.webp)*The server in all its glory*
 
 Step back in time with Retropie, the ultimate tool for reliving your childhood memories of classic gaming on your very own Linux system. Whether you’re a seasoned retro gamer or new to the scene, Retropie offers an experience that’s as exhilarating as it is nostalgic.
 ## Table of contents
