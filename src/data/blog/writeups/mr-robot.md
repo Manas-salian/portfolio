@@ -7,10 +7,10 @@ slug: mr-robot
 featured: true
 draft: false
 tags:
-  - writeup
-  - pwn
+    - writeup
+    - pwn
 description: Write up for the Mr Robot CTF box on tryhackme
-og-image: ../../src/assets/images/blogs/robot.webp
+ogImage: ../../../assets/images/blogs/robot.webp
 ---
 
 Mr Robot is an awesome series which talks directly to the hearts of cyber security enthusiast or anyone who loves messing around with computers. That said, this lab was very fun and i learnt some great new techniques.
