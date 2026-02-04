@@ -1,7 +1,7 @@
 ---
 author: Manas S
-pubDatetime: 2025-1-08T15:22:00Z
-modDatetime: 2025-1-08T16:52:45.934Z
+pubDatetime: 2026-1-08T15:22:00Z
+modDatetime: 2026-1-08T16:52:45.934Z
 title: Mr Robot CTF Writeup
 slug: mr-robot
 featured: true
