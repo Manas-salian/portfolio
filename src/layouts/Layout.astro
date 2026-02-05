@@ -133,7 +133,103 @@ const structuredData = {
     <script is:inline src="/toggle-theme.js"></script>
   </head>
   <body>
+    <!-- Custom crosshair cursor -->
+    <div class="crosshair" id="crosshair">
+      <div class="crosshair-dot"></div>
+    </div>
+    
     <slot />
+    
+    <script is:inline>
+      (function() {
+        // Store state on window to persist across transitions
+        if (!window.__crosshairState) {
+          window.__crosshairState = {
+            mouseX: 0,
+            mouseY: 0,
+            currentX: 0,
+            currentY: 0,
+            animationId: null,
+            listenersAdded: false
+          };
+        }
+        
+        const state = window.__crosshairState;
+        
+        function initCrosshair() {
+          const crosshair = document.getElementById('crosshair');
+          if (!crosshair) return;
+          
+          // Cancel any existing animation
+          if (state.animationId) {
+            cancelAnimationFrame(state.animationId);
+            state.animationId = null;
+          }
+          
+          // Position crosshair at last known mouse position
+          crosshair.style.left = state.currentX + 'px';
+          crosshair.style.top = state.currentY + 'px';
+          crosshair.style.opacity = '1';
+          
+          // Start animation loop
+          function animate() {
+            const el = document.getElementById('crosshair');
+            if (!el) {
+              state.animationId = null;
+              return;
+            }
+            state.currentX += (state.mouseX - state.currentX) * 0.15;
+            state.currentY += (state.mouseY - state.currentY) * 0.15;
+            el.style.left = state.currentX + 'px';
+            el.style.top = state.currentY + 'px';
+            state.animationId = requestAnimationFrame(animate);
+          }
+          animate();
+          
+          // Only add global listeners once
+          if (!state.listenersAdded) {
+            state.listenersAdded = true;
+            
+            document.addEventListener('mousemove', (e) => {
+              state.mouseX = e.clientX;
+              state.mouseY = e.clientY;
+            });
+            
+            const interactiveElements = 'a, button, input, textarea, select, [role="button"], .card, [onclick]';
+            
+            document.addEventListener('mouseover', (e) => {
+              const crosshair = document.getElementById('crosshair');
+              if (crosshair && e.target.closest(interactiveElements)) {
+                crosshair.classList.add('enlarged');
+              }
+            });
+            
+            document.addEventListener('mouseout', (e) => {
+              const crosshair = document.getElementById('crosshair');
+              if (crosshair && e.target.closest(interactiveElements)) {
+                crosshair.classList.remove('enlarged');
+              }
+            });
+            
+            document.addEventListener('mouseleave', () => {
+              const crosshair = document.getElementById('crosshair');
+              if (crosshair) crosshair.style.opacity = '0';
+            });
+            
+            document.addEventListener('mouseenter', () => {
+              const crosshair = document.getElementById('crosshair');
+              if (crosshair) crosshair.style.opacity = '1';
+            });
+          }
+        }
+        
+        // Initialize on first load
+        initCrosshair();
+        
+        // Re-initialize on Astro page transitions
+        document.addEventListener('astro:page-load', initCrosshair);
+      })();
+    </script>
   </body>
 </html>
 

@@ -1,37 +1,41 @@
 ---
 layout: ../layouts/AboutLayout.astro
-title: "About"
+title: "About Me"
+showSocials: true
 ---
 
-AstroPaper is a minimal, accessible and SEO-friendly blog theme built with [Astro](https://astro.build/) and [Tailwind CSS](https://tailwindcss.com/).
+Cybersecurity nerd at Sahyadri College of Engineering and Management, passionate about tech, computers, talking and painting.
 
-![Astro Paper](public/astropaper-og.jpg)
+## Experience
 
-AstroPaper provides a solid foundation for blogs, or even portfolios\_ with full markdown support, built-in dark mode, and a clean layout that works out-of-the-box.
+**Student Researcher** - CoE Digital Forensics and Cybersecurity | *Oct – Dec 2024*  
+Researched wireless protocol vulnerabilities, built a Pwnagotchi for WPA/WPA2 handshake collection, configured network topologies with Cisco Packet Tracer.
 
-The blog posts in this theme also serve as guides, docs or example articles\_ making AstroPaper a flexible starting point for your next content-driven site.
+**QA & Testing Intern** - Stoxii Tech Solutions | *Jul – Aug 2025*  
+Security testing across Web and Android platforms, identified 5+ critical flaws. Built the blogs section using Next.js (5,000+ users).
 
-## Features
+## Skills
 
-AstroPaper comes with a set of useful features that make content publishing easy and effective:
+**Languages:** C, C++, Bash, Python, SQL, JavaScript  
+**Tools:** Burp Suite, Wireshark, Splunk, NMAP, Metasploit, Git, Docker, Linux  
+**Standards:** OWASP Top 10
 
-- SEO-friendly
-- Fast performance
-- Light & dark mode
-- Highly customizable
-- Organizable blog posts
-- Responsive & accessible
-- Static search with [PageFind](https://pagefind.app/)
-- Automatic social image generation
+## Projects
 
-and so much more.
+**Pwnagotchi** - Raspberry Pi device for automated WPA/WPA2 handshake collection using AI-based reinforcement learning.
 
-## Show your support
+**Homeserver** - Ubuntu Server setup with Samba file sharing, Jellyfin media streaming, and WireGuard VPN for secure remote access.
 
-If you like [AstroPaper](https://github.com/satnaing/astro-paper), consider giving it a star ⭐️.
+**Redactly.ai** - PDF redaction pipeline using PyMuPDF, Tesseract OCR, and Microsoft Presidio for PII detection.
 
-Found a bug 🐛 or have an improvement ✨ in mind? Feel free to open an [issue](https://github.com/satnaing/astro-paper/issues), submit a [pull request](https://github.com/satnaing/astro-paper/pulls) or start a [discussion](https://github.com/satnaing/astro-paper/discussions).
+**Tulu NMT** - Neural Machine Translation for the Tulu language using IndicTrans2 with transfer learning.
 
-If you find this theme helpful, you can also [sponsor me on GitHub](https://github.com/sponsors/satnaing) or [buy me a coffee](https://buymeacoffee.com/satnaing) to show your support — every penny counts.
+## Community
 
-Kyay zuu! 🙏🏼
+**Community Lead** - Sahyadri Open Source Community | *Sep 2024 – Present*  
+Led DevHost (1,000+ attendees, 30+ speakers), organized CTFs, run cybersecurity workshops.
+
+## Certifications
+
+- Google Cybersecurity Certification (Coursera, 2024)
+- JLPT N5 (The Japan Foundation, 2025)

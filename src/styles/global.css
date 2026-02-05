@@ -5,20 +5,21 @@
 
 :root,
 html[data-theme="light"] {
-  --background: #fafcfc;
-  --foreground: #222e36;
-  --accent: #d3006a;
-  --muted: #f1bad4;
-  --border: #e3a9c6;
+  --background: #fafbfc;
+  --foreground: #1a1f2e;
+  --accent: #4a7ba7;
+  --muted: #d9e2ec;
+  --border: #c1d1e0;
 }
 
 html[data-theme="dark"] {
-  --background: #21233d;
-  --foreground: #f4f7f5;
-  --accent: #ff5256;
-  --muted: #4a4e86;
-  --border: #b12f32;
+  --background: #1c1e24;
+  --foreground: #e8ecf1;
+  --accent: #6b93c0;
+  --muted: #2d3748;
+  --border: #4a5568;
 }
+
 
 @theme inline {
   --color-background: var(--background);
@@ -66,4 +67,69 @@ html[data-theme="dark"] {
 /* Anything that has been anchored to should have extra scroll margin */
 :target {
   scroll-margin-block: 1rem;
+}
+
+/* Custom crosshair cursor */
+.crosshair {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  width: 24px;
+  height: 24px;
+  transform: translate(-50%, -50%);
+  transition: width 0.2s ease, height 0.2s ease, opacity 0.2s ease;
+}
+
+.crosshair::before,
+.crosshair::after {
+  content: '';
+  position: absolute;
+  background-color: var(--accent);
+  transition: all 0.2s ease;
+}
+
+/* Horizontal line */
+.crosshair::before {
+  width: 100%;
+  height: 2px;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+}
+
+/* Vertical line */
+.crosshair::after {
+  width: 2px;
+  height: 100%;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+}
+
+.crosshair-dot {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background-color: var(--accent);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.2s ease;
+}
+
+/* Enlarged state */
+.crosshair.enlarged {
+  width: 40px;
+  height: 40px;
+}
+
+.crosshair.enlarged .crosshair-dot {
+  width: 6px;
+  height: 6px;
+}
+
+/* Hide default cursor */
+*, *::before, *::after {
+  cursor: none !important;
 }

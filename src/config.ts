@@ -4,6 +4,7 @@ export const SITE = {
   profile: "https://manassalian.dev/",
   desc: "A minimal, and personal portfolio blog site built with Astro and TailwindCSS.",
   title: "Manas S",
+  logo: "/favicon.svg", // Path to logo image (set to "" to show title text instead)
   ogImage: "astropaper-og.jpg",
   lightAndDarkMode: true,
   postPerIndex: 4,
