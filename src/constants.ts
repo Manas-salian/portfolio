@@ -3,15 +3,18 @@ import IconMail from "@/assets/icons/IconMail.svg";
 import IconGitHub from "@/assets/icons/IconGitHub.svg";
 import IconBrandX from "@/assets/icons/IconBrandX.svg";
 import IconLinkedin from "@/assets/icons/IconLinkedin.svg";
-import IconWhatsapp from "@/assets/icons/IconWhatsapp.svg";
-import IconFacebook from "@/assets/icons/IconFacebook.svg";
-import IconTelegram from "@/assets/icons/IconTelegram.svg";
-import IconPinterest from "@/assets/icons/IconPinterest.svg";
 import IconMedium from "@/assets/icons/IconMedium.svg";
 import IconTryHackMe from "@/assets/icons/IconTryHackMe.svg";
 import { SITE } from "@/config";
 
 interface Social {
+  name: string;
+  href: string;
+  linkTitle: string;
+  icon: (_props: Props) => Element;
+}
+
+interface ShareLink {
   name: string;
   href: string;
   linkTitle: string;
@@ -56,3 +59,18 @@ export const SOCIALS: Social[] = [
     icon: IconMail,
   },
 ] as const;
+
+export const SHARE_LINKS: ShareLink[] = [
+  {
+    name: "X",
+    href: "https://x.com/intent/tweet?url=",
+    linkTitle: "Share on X",
+    icon: IconBrandX,
+  },
+  {
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/sharing/share-offsite/?url=",
+    linkTitle: "Share on LinkedIn",
+    icon: IconLinkedin,
+  },
+];
