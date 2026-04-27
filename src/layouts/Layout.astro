@@ -1,6 +1,4 @@
 ---
-import { ClientRouter } from "astro:transitions";
-import { PUBLIC_GOOGLE_SITE_VERIFICATION } from "astro:env/client";
 import { SITE } from "@/config";
 import "@/styles/global.css";
 
@@ -13,7 +11,6 @@ export interface Props {
   canonicalURL?: string;
   pubDatetime?: Date;
   modDatetime?: Date | null;
-  scrollSmooth?: boolean;
 }
 
 const {
@@ -25,7 +22,6 @@ const {
   canonicalURL = new URL(Astro.url.pathname, Astro.url),
   pubDatetime,
   modDatetime,
-  scrollSmooth = false,
 } = Astro.props;
 
 const socialImageURL = new URL(ogImage, Astro.url);
@@ -48,14 +44,10 @@ const structuredData = {
 ---
 
 <!doctype html>
-<html
-  dir={SITE.dir}
-  lang=`${SITE.lang ?? "en"}`
-  class={`${scrollSmooth && "scroll-smooth"}`}
->
+<html dir={SITE.dir} lang={SITE.lang ?? "en"}>
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonicalURL} />
     <meta name="generator" content={Astro.generator} />
@@ -74,22 +66,8 @@ const structuredData = {
     <meta property="og:image" content={socialImageURL} />
 
     <!-- Article Published/Modified time -->
-    {
-      pubDatetime && (
-        <meta
-          property="article:published_time"
-          content={pubDatetime.toISOString()}
-        />
-      )
-    }
-    {
-      modDatetime && (
-        <meta
-          property="article:modified_time"
-          content={modDatetime.toISOString()}
-        />
-      )
-    }
+    {pubDatetime && <meta property="article:published_time" content={pubDatetime.toISOString()} />}
+    {modDatetime && <meta property="article:modified_time" content={modDatetime.toISOString()} />}
 
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image" />
@@ -105,139 +83,16 @@ const structuredData = {
       set:html={JSON.stringify(structuredData)}
     />
 
-    <!-- Enable RSS feed auto-discovery  -->
-    <!-- https://docs.astro.build/en/recipes/rss/#enabling-rss-feed-auto-discovery -->
+    <!-- RSS feed auto-discovery -->
     <link
       rel="alternate"
       type="application/rss+xml"
       title={SITE.title}
       href={new URL("rss.xml", Astro.site)}
     />
-
-    <meta name="theme-color" content="" />
-
-    {
-      // If PUBLIC_GOOGLE_SITE_VERIFICATION is set in the environment variable,
-      // include google-site-verification tag in the heading
-      // Learn more: https://support.google.com/webmasters/answer/9008080#meta_tag_verification&zippy=%2Chtml-tag
-      PUBLIC_GOOGLE_SITE_VERIFICATION && (
-        <meta
-          name="google-site-verification"
-          content={PUBLIC_GOOGLE_SITE_VERIFICATION}
-        />
-      )
-    }
-
-    <ClientRouter />
-
-    <script is:inline src="/toggle-theme.js"></script>
   </head>
   <body>
-    <!-- Custom crosshair cursor -->
-    <div class="crosshair" id="crosshair">
-      <div class="crosshair-dot"></div>
-    </div>
-    
+    <a id="skip-to-content" href="#main-content">Skip to content</a>
     <slot />
-    
-    <script is:inline>
-      (function() {
-        // Store state on window to persist across transitions
-        if (!window.__crosshairState) {
-          window.__crosshairState = {
-            mouseX: 0,
-            mouseY: 0,
-            currentX: 0,
-            currentY: 0,
-            animationId: null,
-            listenersAdded: false
-          };
-        }
-        
-        const state = window.__crosshairState;
-        
-        function initCrosshair() {
-          const crosshair = document.getElementById('crosshair');
-          if (!crosshair) return;
-          
-          // Cancel any existing animation
-          if (state.animationId) {
-            cancelAnimationFrame(state.animationId);
-            state.animationId = null;
-          }
-          
-          // Position crosshair at last known mouse position
-          crosshair.style.left = state.currentX + 'px';
-          crosshair.style.top = state.currentY + 'px';
-          crosshair.style.opacity = '1';
-          
-          // Start animation loop
-          function animate() {
-            const el = document.getElementById('crosshair');
-            if (!el) {
-              state.animationId = null;
-              return;
-            }
-            state.currentX += (state.mouseX - state.currentX) * 0.15;
-            state.currentY += (state.mouseY - state.currentY) * 0.15;
-            el.style.left = state.currentX + 'px';
-            el.style.top = state.currentY + 'px';
-            state.animationId = requestAnimationFrame(animate);
-          }
-          animate();
-          
-          // Only add global listeners once
-          if (!state.listenersAdded) {
-            state.listenersAdded = true;
-            
-            document.addEventListener('mousemove', (e) => {
-              state.mouseX = e.clientX;
-              state.mouseY = e.clientY;
-            });
-            
-            const interactiveElements = 'a, button, input, textarea, select, [role="button"], .card, [onclick]';
-            
-            document.addEventListener('mouseover', (e) => {
-              const crosshair = document.getElementById('crosshair');
-              if (crosshair && e.target.closest(interactiveElements)) {
-                crosshair.classList.add('enlarged');
-              }
-            });
-            
-            document.addEventListener('mouseout', (e) => {
-              const crosshair = document.getElementById('crosshair');
-              if (crosshair && e.target.closest(interactiveElements)) {
-                crosshair.classList.remove('enlarged');
-              }
-            });
-            
-            document.addEventListener('mouseleave', () => {
-              const crosshair = document.getElementById('crosshair');
-              if (crosshair) crosshair.style.opacity = '0';
-            });
-            
-            document.addEventListener('mouseenter', () => {
-              const crosshair = document.getElementById('crosshair');
-              if (crosshair) crosshair.style.opacity = '1';
-            });
-          }
-        }
-        
-        // Initialize on first load
-        initCrosshair();
-        
-        // Re-initialize on Astro page transitions
-        document.addEventListener('astro:page-load', initCrosshair);
-      })();
-    </script>
   </body>
 </html>
-
-<style>
-  html,
-  body {
-    margin: 0;
-    width: 100%;
-    height: 100%;
-  }
-</style>

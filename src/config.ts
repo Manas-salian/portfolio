@@ -1,24 +1,24 @@
 export const SITE = {
-  website: "https://manassalian.dev/", // deployed domain
+  website: "https://manassalian.dev/",
   author: "Manas S",
   profile: "https://manassalian.dev/",
-  desc: "A minimal, and personal portfolio blog site built with Astro and TailwindCSS.",
+  desc: "Manas S — cybersecurity, programming, and everything in between.",
   title: "Manas S",
-  logo: "/favicon.svg", // Path to logo image (set to "" to show title text instead)
+  logo: "",
   ogImage: "astropaper-og.jpg",
-  lightAndDarkMode: true,
+  lightAndDarkMode: false,
   postPerIndex: 4,
   postPerPage: 4,
-  scheduledPostMargin: 15 * 60 * 1000, // 15 minutes
+  scheduledPostMargin: 15 * 60 * 1000,
   showArchives: true,
-  showBackButton: true, // show back button in post detail
+  showBackButton: false,
   editPost: {
     enabled: false,
-    text: "Edit page",
-    url: "https://github.com/manas-salian/portfolio/edit/main/",
+    text: "",
+    url: "",
   },
-  dynamicOgImage: true,
-  dir: "ltr", // "rtl" | "auto"
-  lang: "en", // html lang code. Set this empty and default will be "en"
-  timezone: "Asia/Kolkata", // Default global timezone (IANA format) https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+  dynamicOgImage: false,
+  dir: "ltr",
+  lang: "en",
+  timezone: "Asia/Kolkata",
 } as const;

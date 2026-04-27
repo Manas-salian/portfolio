@@ -17,7 +17,6 @@ export async function getStaticPaths({ paginate }: GetStaticPathsOptions) {
 
   return tags.flatMap(({ tag, tagName }) => {
     const tagPosts = getPostsByTag(posts, tag);
-
     return paginate(tagPosts, {
       params: { tag },
       props: { tagName },
@@ -35,16 +34,12 @@ const { page, tagName } = Astro.props;
   <Header />
   <Main
     pageTitle={[`Tag:`, `${tagName}`]}
-    titleTransition={tag}
     pageDesc={`All the articles with the tag "${tagName}".`}
   >
-    <h1 slot="title" transition:name={tag}>{`Tag:${tag}`}</h1>
-    <ul>
+    <ul class="post-list">
       {page.data.map(data => <Card {...data} />)}
     </ul>
   </Main>
-
   <Pagination {page} />
-
-  <Footer noMarginTop={page.lastPage > 1} />
+  <Footer />
 </Layout>

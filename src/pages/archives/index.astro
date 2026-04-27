@@ -8,7 +8,6 @@ import Card from "@/components/Card.astro";
 import getPostsByGroupCondition from "@/utils/getPostsByGroupCondition";
 import { SITE } from "@/config";
 
-// Redirect to 404 page if `showArchives` config is false
 if (!SITE.showArchives) {
   return Astro.redirect("/404");
 }
@@ -16,18 +15,8 @@ if (!SITE.showArchives) {
 const posts = await getCollection("blog", ({ data }) => !data.draft);
 
 const months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
+  "January", "February", "March", "April", "May", "June",
+  "July", "August", "September", "October", "November", "December",
 ];
 ---
 
@@ -43,8 +32,7 @@ const months = [
         .sort(([yearA], [yearB]) => Number(yearB) - Number(yearA))
         .map(([year, yearGroup]) => (
           <div>
-            <span class="text-2xl font-bold">{year}</span>
-            <sup class="text-sm">{yearGroup.length}</sup>
+            <h3>{year} <sup>({yearGroup.length})</sup></h3>
             {Object.entries(
               getPostsByGroupCondition(
                 yearGroup,
@@ -53,12 +41,9 @@ const months = [
             )
               .sort(([monthA], [monthB]) => Number(monthB) - Number(monthA))
               .map(([month, monthGroup]) => (
-                <div class="flex flex-col sm:flex-row">
-                  <div class="mt-6 min-w-36 text-lg sm:my-6">
-                    <span class="font-bold">{months[Number(month) - 1]}</span>
-                    <sup class="text-xs">{monthGroup.length}</sup>
-                  </div>
-                  <ul>
+                <div>
+                  <h4>{months[Number(month) - 1]} <sup>({monthGroup.length})</sup></h4>
+                  <ul class="post-list">
                     {monthGroup
                       .sort(
                         (a, b) =>

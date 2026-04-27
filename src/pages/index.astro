@@ -3,20 +3,12 @@ import { getCollection } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
-import Socials from "@/components/Socials.astro";
-import LinkButton from "@/components/LinkButton.astro";
 import Card from "@/components/Card.astro";
-import Hr from "@/components/Hr.astro";
 import getSortedPosts from "@/utils/getSortedPosts";
-import IconRss from "@/assets/icons/IconRss.svg";
-import IconArrowRight from "@/assets/icons/IconArrowRight.svg";
 import { SITE } from "@/config";
 import { SOCIALS } from "@/constants";
-import ContactForm from "@/components/ContactForm.astro";
-import LetterGlitch from "@/components/LetterGlitch.astro";
 
 const posts = await getCollection("blog");
-
 const sortedPosts = getSortedPosts(posts);
 const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
 const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
@@ -24,96 +16,101 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
 
 <Layout>
   <Header />
-  <main id="main-content" data-layout="index">
-    <section id="hero" class="pt-8 pb-6">
-      <div class="relative flex items-center">
-        <h1 class="my-4 inline-block text-4xl font-bold sm:my-8 sm:text-5xl">Manas S</h1>
-        <div class="relative ms-4 h-24 flex-1 overflow-hidden sm:h-32">
-          <LetterGlitch glitchSpeed={1} smooth={true} class="h-full w-full" />
-          <div
-            class="pointer-events-none absolute inset-0 bg-gradient-to-r from-background via-background/80 to-transparent"
-          >
-          </div>
-        </div>
-      </div>
-      <a
-        target="_blank"
-        href="/rss.xml"
-        class="inline-block"
-        aria-label="rss feed"
-        title="RSS Feed"
-      >
-        <IconRss
-          width={20}
-          height={20}
-          class="scale-125 stroke-accent stroke-3 rtl:-rotate-90"
-        />
-        <span class="sr-only">RSS Feed</span>
-      </a>
+  <main id="main-content">
 
-      <p>
-        Welcome to my personal blog where I
-        share my thoughts on technology, programming, and web development.
-      </p>
-      {
-        // only display if at least one social link is enabled
-        SOCIALS.length > 0 && (
-          <div class="mt-4 flex flex-col sm:flex-row sm:items-center">
-            <div class="me-2 mb-1 whitespace-nowrap sm:mb-0">Social Links:</div>
-            <Socials />
-          </div>
-        )
-      }
-    </section>
+    <h1>Manas S</h1>
+    <p>
+      Cybersecurity nerd at Sahyadri College of Engineering and Management.
+      Passionate about tech, computers, talking and painting.
+    </p>
 
-    <Hr />
-
-    {
-      featuredPosts.length > 0 && (
+    <p class="social-links">
+      {SOCIALS.map((social, i) => (
         <>
-          <section id="featured" class="pt-12 pb-6">
-            <h2 class="text-2xl font-semibold tracking-wide">Featured</h2>
-            <ul>
-              {featuredPosts.map(data => (
-                <Card variant="h3" {...data} />
-              ))}
-            </ul>
-          </section>
-          {recentPosts.length > 0 && <Hr />}
+          <a href={social.href} target="_blank" rel="noopener noreferrer">{social.name}</a>
+          {i < SOCIALS.length - 1 && <span class="sep">·</span>}
         </>
-      )
-    }
+      ))}
+    </p>
 
-    {
-      recentPosts.length > 0 && (
-        <section id="recent-posts" class="pt-12 pb-6">
-          <h2 class="text-2xl font-semibold tracking-wide">Recent Posts</h2>
-          <ul>
-            {recentPosts.map(
-              (data, index) =>
-                index < SITE.postPerIndex && <Card variant="h3" {...data} />
-            )}
-          </ul>
-        </section>
-      )
-    }
+    <hr />
 
-    <div class="my-8 text-center">
-      <LinkButton href="/posts/">
-        All Posts
-        <IconArrowRight class="inline-block rtl:-rotate-180" />
-      </LinkButton>
-    </div>
+    <h2>Experience</h2>
+
+    <p>
+      <strong>Student Researcher</strong> — CoE Digital Forensics and Cybersecurity
+      <em>(Oct – Dec 2024)</em><br />
+      Researched wireless protocol vulnerabilities, built a Pwnagotchi for WPA/WPA2 handshake collection, configured network topologies with Cisco Packet Tracer.
+    </p>
+
+    <p>
+      <strong>QA & Testing Intern</strong> — Stoxii Tech Solutions
+      <em>(Jul – Aug 2025)</em><br />
+      Security testing across Web and Android platforms, identified 5+ critical flaws. Built the blogs section using Next.js (5,000+ users).
+    </p>
+
+    <hr />
+
+    <h2>Skills</h2>
+
+    <p>
+      <strong>Languages:</strong> C, C++, Bash, Python, SQL, JavaScript<br />
+      <strong>Tools:</strong> Burp Suite, Wireshark, Splunk, NMAP, Metasploit, Git, Docker, Linux<br />
+      <strong>Standards:</strong> OWASP Top 10
+    </p>
+
+    <hr />
+
+    <h2>Projects</h2>
+
+    <p><strong>Pwnagotchi</strong> — Raspberry Pi device for automated WPA/WPA2 handshake collection using AI-based reinforcement learning.</p>
+
+    <p><strong>Homeserver</strong> — Ubuntu Server setup with Samba file sharing, Jellyfin media streaming, and WireGuard VPN for secure remote access.</p>
+
+    <p><strong>Redactly.ai</strong> — PDF redaction pipeline using PyMuPDF, Tesseract OCR, and Microsoft Presidio for PII detection.</p>
+
+    <p><strong>Tulu NMT</strong> — Neural Machine Translation for the Tulu language using IndicTrans2 with transfer learning.</p>
+
+    <hr />
+
+    <h2>Community</h2>
+
+    <p>
+      <strong>Community Lead</strong> — Sahyadri Open Source Community <em>(Sep 2024 – Present)</em><br />
+      Led DevHost (1,000+ attendees, 30+ speakers), organized CTFs, run cybersecurity workshops.
+    </p>
+
+    <h2>Certifications</h2>
+
+    <ul>
+      <li>Google Cybersecurity Certification (Coursera, 2024)</li>
+      <li>JLPT N5 (The Japan Foundation, 2025)</li>
+    </ul>
+
+    <hr />
+
+    {featuredPosts.length > 0 && (
+      <>
+        <h2>Featured Posts</h2>
+        <ul class="post-list">
+          {featuredPosts.map(data => <Card variant="h3" {...data} />)}
+        </ul>
+      </>
+    )}
+
+    {recentPosts.length > 0 && (
+      <>
+        <h2>Recent Posts</h2>
+        <ul class="post-list">
+          {recentPosts.map(
+            (data, index) =>
+              index < SITE.postPerIndex && <Card variant="h3" {...data} />
+          )}
+        </ul>
+        <p><a href="/posts/">All posts &rarr;</a></p>
+      </>
+    )}
+
   </main>
   <Footer />
 </Layout>
-
-<script>
-  document.addEventListener("astro:page-load", () => {
-    const indexLayout = (document.querySelector("#main-content") as HTMLElement)
-      ?.dataset?.layout;
-    if (indexLayout) {
-      sessionStorage.setItem("backUrl", "/");
-    }
-  });
-</script>
