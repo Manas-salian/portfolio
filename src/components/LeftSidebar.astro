@@ -1,0 +1,39 @@
+---
+import { getCollection } from "astro:content";
+import getSortedPosts from "@/utils/getSortedPosts";
+import { getPath } from "@/utils/getPath";
+import { SITE } from "@/config";
+
+const posts = await getCollection("blog", ({ data }) => !data.draft);
+const sortedPosts = getSortedPosts(posts);
+const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
+const recentPosts = sortedPosts.filter(({ data }) => !data.featured).slice(0, SITE.postPerIndex);
+---
+
+<aside class="sidebar sidebar-left">
+  {featuredPosts.length > 0 && (
+    <div class="sidebar-section">
+      <h4>Featured</h4>
+      <ul>
+        {featuredPosts.map(({ data, id, filePath }) => (
+          <li><a href={getPath(id, filePath)}>{data.title}</a></li>
+        ))}
+      </ul>
+    </div>
+  )}
+
+  {recentPosts.length > 0 && (
+    <div class="sidebar-section">
+      <h4>Recent</h4>
+      <ul>
+        {recentPosts.map(({ data, id, filePath }) => (
+          <li><a href={getPath(id, filePath)}>{data.title}</a></li>
+        ))}
+      </ul>
+    </div>
+  )}
+
+  <div class="sidebar-section">
+    <a href="/posts/">All posts &rarr;</a>
+  </div>
+</aside>

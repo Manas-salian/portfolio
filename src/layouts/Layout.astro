@@ -1,6 +1,8 @@
 ---
 import { SITE } from "@/config";
 import "@/styles/global.css";
+import LeftSidebar from "@/components/LeftSidebar.astro";
+import RightSidebar from "@/components/RightSidebar.astro";
 
 export interface Props {
   title?: string;
@@ -93,6 +95,12 @@ const structuredData = {
   </head>
   <body>
     <a id="skip-to-content" href="#main-content">Skip to content</a>
-    <slot />
+    <div class="site-wrapper">
+      <LeftSidebar />
+      <div class="site-content">
+        <slot />
+      </div>
+      <RightSidebar />
+    </div>
   </body>
 </html>

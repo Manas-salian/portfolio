@@ -1,17 +1,7 @@
 ---
-import { getCollection } from "astro:content";
 import Layout from "@/layouts/Layout.astro";
 import Header from "@/components/Header.astro";
 import Footer from "@/components/Footer.astro";
-import Card from "@/components/Card.astro";
-import getSortedPosts from "@/utils/getSortedPosts";
-import { SITE } from "@/config";
-import { SOCIALS } from "@/constants";
-
-const posts = await getCollection("blog");
-const sortedPosts = getSortedPosts(posts);
-const featuredPosts = sortedPosts.filter(({ data }) => data.featured);
-const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
 ---
 
 <Layout>
@@ -22,15 +12,6 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
     <p>
       Cybersecurity nerd at Sahyadri College of Engineering and Management.
       Passionate about tech, computers, talking and painting.
-    </p>
-
-    <p class="social-links">
-      {SOCIALS.map((social, i) => (
-        <>
-          <a href={social.href} target="_blank" rel="noopener noreferrer">{social.name}</a>
-          {i < SOCIALS.length - 1 && <span class="sep">·</span>}
-        </>
-      ))}
     </p>
 
     <hr />
@@ -86,30 +67,6 @@ const recentPosts = sortedPosts.filter(({ data }) => !data.featured);
       <li>Google Cybersecurity Certification (Coursera, 2024)</li>
       <li>JLPT N5 (The Japan Foundation, 2025)</li>
     </ul>
-
-    <hr />
-
-    {featuredPosts.length > 0 && (
-      <>
-        <h2>Featured Posts</h2>
-        <ul class="post-list">
-          {featuredPosts.map(data => <Card variant="h3" {...data} />)}
-        </ul>
-      </>
-    )}
-
-    {recentPosts.length > 0 && (
-      <>
-        <h2>Recent Posts</h2>
-        <ul class="post-list">
-          {recentPosts.map(
-            (data, index) =>
-              index < SITE.postPerIndex && <Card variant="h3" {...data} />
-          )}
-        </ul>
-        <p><a href="/posts/">All posts &rarr;</a></p>
-      </>
-    )}
 
   </main>
   <Footer />

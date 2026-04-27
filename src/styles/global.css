@@ -1,14 +1,89 @@
 /* === The whole damn stylesheet === */
 
 body {
-  margin: 40px auto;
-  max-width: 650px;
+  margin: 0;
   line-height: 1.6;
   font-size: 18px;
   color: #444;
-  padding: 0 16px;
   background: #fafafa;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+/* === 3-column layout === */
+
+.site-wrapper {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 650px) 180px;
+  gap: 2em;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 40px 16px;
+  align-items: start;
+}
+
+.site-content {
+  min-width: 0;
+}
+
+/* === Sidebars === */
+
+.sidebar {
+  position: sticky;
+  top: 20px;
+  padding-top: 4.5em;
+  font-size: 0.85em;
+  color: #444;
+  line-height: 1.5;
+}
+
+.sidebar h4 {
+  margin: 0 0 0.3em;
+  font-size: 0.9em;
+  font-weight: bold;
+  color: #222;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1.5em;
+}
+
+.sidebar ul li {
+  margin-bottom: 0.35em;
+}
+
+.sidebar a {
+  color: #1a6fb5;
+  text-decoration: none;
+}
+
+.sidebar a:hover {
+  text-decoration: underline;
+}
+
+.sidebar-section {
+  margin-bottom: 1.5em;
+}
+
+/* --- Mobile: hide left sidebar, move right to bottom --- */
+@media (max-width: 900px) {
+  .site-wrapper {
+    display: block;
+    max-width: 650px;
+    padding: 24px 16px;
+  }
+
+  .sidebar-left {
+    display: none;
+  }
+
+  .sidebar-right {
+    position: static;
+    margin-top: 2em;
+    padding-top: 1em;
+    border-top: 1px solid #ddd;
+  }
 }
 
 h1, h2, h3 {

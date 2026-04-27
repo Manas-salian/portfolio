@@ -1,0 +1,29 @@
+---
+import { SOCIALS } from "@/constants";
+
+const interestingLinks = [
+  { name: "Hacker News", href: "https://news.ycombinator.com" },
+  { name: "CyberChef", href: "https://gchq.github.io/CyberChef/" },
+  { name: "PicoCTF", href: "https://picoctf.org/" },
+];
+---
+
+<aside class="sidebar sidebar-right">
+  <div class="sidebar-section">
+    <h4>Links</h4>
+    <ul>
+      {SOCIALS.map(social => (
+        <li><a href={social.href} target="_blank" rel="noopener noreferrer">{social.name}</a></li>
+      ))}
+    </ul>
+  </div>
+
+  <div class="sidebar-section">
+    <h4>Interesting</h4>
+    <ul>
+      {interestingLinks.map(link => (
+        <li><a href={link.href} target="_blank" rel="noopener noreferrer">{link.name}</a></li>
+      ))}
+    </ul>
+  </div>
+</aside>
