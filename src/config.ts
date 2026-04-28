@@ -5,7 +5,7 @@ export const SITE = {
   desc: "Manas S — cybersecurity, programming, and everything in between.",
   title: "Manas S",
   logo: "",
-  ogImage: "astropaper-og.jpg",
+  ogImage: "manas-og.jpg",
   lightAndDarkMode: false,
   postPerIndex: 4,
   postPerPage: 4,
